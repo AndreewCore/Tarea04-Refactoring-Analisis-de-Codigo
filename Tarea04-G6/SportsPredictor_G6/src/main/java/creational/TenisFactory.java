@@ -26,9 +26,4 @@ public class TenisFactory implements EventoAbstractFactory {
         return new ParticipanteTenis("Tenista", 50);
     }
 
-    @Override
-    public Prediccion crearPrediccion() {
-        return new PrediccionTenis();
-    }
-
 }

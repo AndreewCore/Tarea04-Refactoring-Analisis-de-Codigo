@@ -26,9 +26,4 @@ public class BasketFactory implements EventoAbstractFactory {
         return new ParticipanteBasket("Jugador Basket", "Alero");
     }
 
-    @Override
-    public Prediccion crearPrediccion() {
-        return new PrediccionBasket();
-    }
-
 }

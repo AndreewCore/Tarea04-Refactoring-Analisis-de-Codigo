@@ -26,9 +26,4 @@ public class FutbolFactory implements EventoAbstractFactory {
         return new ParticipanteFutbol("Jugador Fútbol", "Delantero");
     }
 
-    @Override
-    public Prediccion crearPrediccion() {
-        return new PrediccionFutbol();
-    }
-
 }

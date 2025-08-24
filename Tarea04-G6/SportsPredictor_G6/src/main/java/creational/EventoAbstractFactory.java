@@ -7,5 +7,4 @@ import model.prediccion.Prediccion;
 public interface EventoAbstractFactory {
     Evento crearEvento();
     Participante crearParticipante();
-    Prediccion crearPrediccion();
 }
