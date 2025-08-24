@@ -3,6 +3,9 @@ package model.evento;
 import java.time.LocalDateTime;
 import java.util.Random;
 
+import model.prediccion.Prediccion;
+import model.prediccion.PrediccionFutbol;
+
 public class EventoFutbol extends Evento {
     private Boolean penales;
     private Boolean tiempoExtra;
@@ -19,20 +22,25 @@ public class EventoFutbol extends Evento {
 
     @Override
     public void actualizarEstadisticas() {
-        estadisticas.clear();
-        estadisticas.add(new Random().nextInt(5)); // Goles local
-        estadisticas.add(new Random().nextInt(5)); // Goles visitante
+        estadistica.getEstatidisticas().clear();
+        estadistica.getEstatidisticas().add(new Random().nextInt(5));
+        estadistica.getEstatidisticas().add(new Random().nextInt(5));
         System.out.println("Estadísticas de fútbol actualizadas");
     }
 
     @Override
     public String calcularResultado() {
-        if (estadisticas.size() >= 2) {
-            int golesLocal = estadisticas.get(0);
-            int golesVisitante = estadisticas.get(1);
+        if (estadistica.getEstatidisticas().size() >= 2) {
+            int golesLocal = estadistica.getEstatidisticas().get(0);
+            int golesVisitante = estadistica.getEstatidisticas().get(1);
             return golesLocal + " - " + golesVisitante;
         }
         return "0 - 0";
+    }
+
+    @Override
+    public Prediccion crearPrediccion() {
+        return new PrediccionFutbol();
     }
 
 }

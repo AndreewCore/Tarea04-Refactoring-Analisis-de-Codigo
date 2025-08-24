@@ -3,6 +3,9 @@ package model.evento;
 import java.time.LocalDateTime;
 import java.util.Random;
 
+import model.prediccion.Prediccion;
+import model.prediccion.PrediccionBasket;
+
 public class EventoBasket extends Evento {
     private Boolean desempate;
     private Boolean tiempoExtra;
@@ -19,15 +22,20 @@ public class EventoBasket extends Evento {
 
     @Override
     public void actualizarEstadisticas() {
-        estadisticas.clear();
-        estadisticas.add(80 + new Random().nextInt(40)); // Puntos local
-        estadisticas.add(80 + new Random().nextInt(40)); // Puntos visitante
+        estadistica.getEstatidisticas().clear();
+        estadistica.getEstatidisticas().add(80 + new Random().nextInt(40));
+        estadistica.getEstatidisticas().add(80 + new Random().nextInt(40));
         System.out.println("Estadísticas de básquet actualizadas");
     }
 
     @Override
     public String calcularResultado() {
-        return estadisticas.stream().mapToInt(Integer::intValue).sum() + "";
+        return estadistica.getEstatidisticas().stream().mapToInt(Integer::intValue).sum() + "";
+    }
+
+    @Override
+    public Prediccion crearPrediccion() {
+        return new PrediccionBasket();
     }
 
 }

@@ -3,6 +3,9 @@ package model.evento;
 import java.time.LocalDateTime;
 import java.util.Random;
 
+import model.prediccion.Prediccion;
+import model.prediccion.PrediccionTenis;
+
 public class EventoTenis extends Evento {
     private int setsLocal;
     private int juegos;
@@ -17,18 +20,23 @@ public class EventoTenis extends Evento {
 
     @Override
     public void actualizarEstadisticas() {
-        estadisticas.clear();
-        estadisticas.add(new Random().nextInt(3) + 1); // Sets jugador 1
-        estadisticas.add(new Random().nextInt(3) + 1); // Sets jugador 2
+        estadistica.getEstatidisticas().clear();
+        estadistica.getEstatidisticas().add(new Random().nextInt(3) + 1);
+        estadistica.getEstatidisticas().add(new Random().nextInt(3) + 1);
         System.out.println("Estadísticas de tenis actualizadas");
     }
 
     @Override
     public String calcularResultado() {
-        if (estadisticas.size() >= 2) {
-            return estadisticas.get(0) > estadisticas.get(1) ? "Jugador 1" : "Jugador 2";
+        if (estadistica.getEstatidisticas().size() >= 2) {
+            return estadistica.getEstatidisticas().get(0) > estadistica.getEstatidisticas().get(1) ? "Jugador 1" : "Jugador 2";
         }
         return "Sin determinar";
+    }
+
+    @Override
+    public Prediccion crearPrediccion() {
+        return new PrediccionTenis();
     }
 
 }
