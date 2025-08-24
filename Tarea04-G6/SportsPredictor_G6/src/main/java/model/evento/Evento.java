@@ -16,7 +16,7 @@ public abstract class Evento {
     protected String id;
     protected String nombre;
     protected LocalDateTime horaComienza;
-    protected List<Integer> estadisticas;
+    protected Estadistica estadistica;
     protected int duracion;
     protected String lugar;
     protected EstadoEvento estado;
