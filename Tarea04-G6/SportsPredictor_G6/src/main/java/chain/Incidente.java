@@ -10,7 +10,7 @@ public class Incidente {
     private Integer complejidad;
     private Usuario usuario;
     private Prediccion prediccion;
-    private String estado;
+    private EstadoIncidente estado;
 
     public Incidente(String descripcion, Integer complejidad, Usuario usuario, Prediccion prediccion){
         this.id = UUID.randomUUID().toString(); 
@@ -18,7 +18,7 @@ public class Incidente {
         this.complejidad = complejidad; 
         this.usuario = usuario; 
         this.prediccion = prediccion; 
-        this.estado = "ABIERTO";
+        this.estado = EstadoIncidente.ABIERTO;
     }
 
     public void escalar(){ 
@@ -27,10 +27,32 @@ public class Incidente {
     }
 
     public void resolver(){ 
-        this.estado = "RESUELTO"; 
+        this.estado = EstadoIncidente.CERRADO; 
         System.out.println("Incidente " + id + " resuelto"); 
     }
 
-    public String getId(){ return id; } public String getDescripcion(){ return descripcion; } public Integer getComplejidad(){ return complejidad; } public Usuario getUsuario(){ return usuario; } public Prediccion getPrediccion(){ return prediccion; } public String getEstado(){ return estado; }
+    public String getId(){
+        return id;
+    }
+    
+    public String getDescripcion(){
+        return descripcion;
+    }
+    
+    public Integer getComplejidad(){
+        return complejidad;
+    }
+    
+    public Usuario getUsuario(){
+        return usuario;
+    }
+    
+    public Prediccion getPrediccion(){
+        return prediccion;
+    }
+    
+    public EstadoIncidente getEstado(){
+        return estado;
+    }
 
 }
