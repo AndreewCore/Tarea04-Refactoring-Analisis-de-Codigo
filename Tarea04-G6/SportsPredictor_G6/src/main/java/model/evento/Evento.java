@@ -35,15 +35,7 @@ public abstract class Evento {
         this.estadistica = new Estadistica();
     }
 
-    public EventoAbstractFactory obtenerFactory(Evento evento){
-        if (evento instanceof model.evento.EventoFutbol)
-            return new FutbolFactory("Liga Futbol");
-        else if (evento instanceof model.evento.EventoBasket)
-            return new BasketFactory("Liga Basket");
-        else if (evento instanceof model.evento.EventoTenis)
-            return new TenisFactory("Liga Tenis");
-        return null;
-    }
+
 
     public void agregarParticipante(Participante p, List<Participante> Equipo){
         Equipo.add(p);
