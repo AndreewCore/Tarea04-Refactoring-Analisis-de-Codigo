@@ -13,15 +13,17 @@ public class PrediccionTenis extends Prediccion {
 
     @Override
     public void validarPrediccion() {
-        if (evento instanceof EventoTenis && evento.getEstado() == EstadoEvento.FINALIZADO) {
-            EventoTenis tenis = (EventoTenis) evento;
-            String ganadorReal = tenis.calcularResultado();
-            if (ganadorReal.equals(ganadorPredicho)) {
-                this.estado = model.enums.EstadoPrediccion.ACERTADO;
-                this.puntos = calcularPuntos();
-            } else {
-                this.estado = model.enums.EstadoPrediccion.FALLIDO;
-            }
+        if (!(evento instanceof EventoTenis)) return;
+        if (evento.getEstado() != EstadoEvento.FINALIZADO) return;
+
+        EventoTenis tenis = (EventoTenis) evento;
+        String ganadorReal = tenis.calcularResultado();
+
+        if (ganadorReal.equals(ganadorPredicho)) {
+            this.estado = model.enums.EstadoPrediccion.ACERTADO;
+            this.puntos = calcularPuntos();
+        } else {
+            this.estado = model.enums.EstadoPrediccion.FALLIDO;
         }
     }
 
@@ -34,9 +36,5 @@ public class PrediccionTenis extends Prediccion {
     @Override
     public Integer calcularPuntos() {
         return estado == model.enums.EstadoPrediccion.ACERTADO ? 12 : 0;
-    }
-
-    public String verificarGanador() { 
-        return ganadorPredicho != null ? ganadorPredicho : "Sin predicción"; 
     }
 }

@@ -15,23 +15,24 @@ import creational.TenisFactory;
 public abstract class Evento {
     protected String id;
     protected String nombre;
-    protected List<Participante> EquipoLocal;
-    protected List<Participante> EquipoVisitante;
     protected LocalDateTime horaComienza;
     protected List<Integer> estadisticas;
     protected int duracion;
     protected String lugar;
     protected EstadoEvento estado;
+    protected EquipoLocal equipoLocal;
+    protected EquipoVisitante equipoVisitante;
 
     public Evento(String nombre, LocalDateTime horaComienza) {
         this.id = UUID.randomUUID().toString();
         this.nombre = nombre;
-        this.EquipoLocal = new ArrayList<>();
-        this.EquipoVisitante = new ArrayList<>();
+        this.equipoLocal = new EquipoLocal();
+        this.equipoVisitante = new EquipoVisitante();
         this.horaComienza = horaComienza;
         this.estadisticas = new ArrayList<>();
         this.lugar = "Mi casa padre";
         this.estado = EstadoEvento.PROGRAMADO;
+        this.estadistica = new Estadistica();
     }
 
     public EventoAbstractFactory obtenerFactory(Evento evento){
@@ -70,19 +71,19 @@ public abstract class Evento {
     }
 
     public List<Participante> getEquipoLocal() {
-        return EquipoLocal;
+        return equipoLocal.getEquipoLocal();
     }
 
-    public void setEquipoLocal(List<Participante> equipoLocal) {
-        EquipoLocal = equipoLocal;
+    public void setEquipoLocal(List<Participante> equipoLocalParticipante) {
+        equipoLocal.añadirParticipanteLocal(equipoLocalParticipante.get(equipoLocalParticipante.size()));
     }
 
     public List<Participante> getEquipoVisitante() {
-        return EquipoVisitante;
+        return equipoVisitante.getEquipoVisitante();
     }
 
-    public void setEquipoVisitante(List<Participante> equipoVisitante) {
-        EquipoVisitante = equipoVisitante;
+    public void setEquipoVisitante(List<Participante> equipoVisitanteParticipante) {
+        equipoVisitante.añadirParticipanteVisitante(equipoVisitanteParticipante.get(equipoVisitanteParticipante.size()));
     }
 
     public LocalDateTime getHoraComienza() {
