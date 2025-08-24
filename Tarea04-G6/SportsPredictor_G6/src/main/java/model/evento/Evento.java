@@ -35,7 +35,7 @@ public abstract class Evento {
         this.estadistica = new Estadistica();
     }
 
-
+    public abstract Prediccion crearPrediccion();
 
     public void agregarParticipante(Participante p, List<Participante> Equipo){
         Equipo.add(p);
